@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>INVOICE</h1>
+
+    <div class="invoice-details">
+        <p><strong>Invoice Number:</strong> {{ invoice_number }}</p>
+        <p><strong>Date:</strong> {{ invoice_date }}</p>
+        <p><strong>Client Name:</strong> {{ client_name }}</p>
+    </div>
+
+    <hr>
+
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price per item (UGX)</th>
+            <th>Total (UGX)</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.description }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>UGX {{ "%.2f"|format(item.price) }}</td>
+            <td>UGX {{ "%.2f"|format(item.total) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="total-row">
+        <p><strong>Total Amount Due:</strong> UGX {{ "{:,.0f}".format(total) }}</p>
+    </div>
+
+    <hr>
+
+    <button class="print-btn" onclick="window.print()">Print Invoice</button>
+
+    <h2>Total: UGX {{ total }}</h2>
+
+</body>
+
+</html>

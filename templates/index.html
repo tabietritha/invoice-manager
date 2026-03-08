@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Create Invoice</h1>
+    <a href="/tracker">📊 View Tracker</a>
+
+    <form action="/generate" method="POST">
+        <label>Client Name:</label>
+        <input type="text" name="client_name" placeholder="Enter client name">
+        <br><br>
+
+        <h3>Items</h3>
+        <div id="items-container">
+            <div class="item-row">
+                <input type="text" name="item_description[]" placeholder="Enter item description">
+                <input type="number" name="item_quantity[]" placeholder="Enter quantity">
+                <input type="number" name="item_price[]" placeholder="Enter price" step="0.01">
+                <br>
+            </div>
+        </div>
+        <br><br>
+        <button type="button" onclick="addItem()">Add Item</button>
+        <br><br>
+        <label>Payment Status:
+            <input type="checkbox" name="status" value="Paid"> Paid
+        </label>
+        <br><br>
+        <button type="submit">Generate Invoice</button>
+    </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

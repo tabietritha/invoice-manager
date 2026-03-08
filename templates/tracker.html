@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Invoice Tracker</h1>
+    <div>
+    <h2>Summary</h2>
+    <p>Total Invoices: {{ total_invoices }}</p>
+    <p>Total Revenue: UGX {{ "{:,.0f}".format(total_revenue) }}</p>
+    <p>Total Paid: UGX {{ "{:,.0f}".format(total_paid) }}</p>
+    <p>Total Unpaid: UGX {{ "{:,.0f}".format(total_unpaid) }}</p>
+</div>
+
+<hr>
+    <a href="/">+ Create New Invoice</a>
+
+    <hr>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Invoice Number</th>
+            <th>Client</th>
+            <th>Total (UGX)</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice[0] }}</td>
+            <td>{{ invoice[1] }}</td>
+            <td>{{ invoice[2] }}</td>
+            <td>{{ "{:,.0f}".format(invoice[3]) }}</td>
+            <td>{{ invoice[4] }}</td>
+            <td>{{ invoice[5] }}</td>
+            <td>
+                {% if invoice[5] != 'UnPaid' %}
+                <a href="/mark-paid/{{ invoice[0] }}">Mark as Paid</a>
+                {% else %}
+                Done
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
