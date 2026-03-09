@@ -9,7 +9,12 @@
 
 <body>
     <h1>Create Invoice</h1>
-    <a href="/tracker">📊 View Tracker</a>
+    <p>
+        <a href="/tracker">📊 View Tracker</a> &nbsp;| &nbsp;
+        <a href="/inventory">📦 View Inventory</a> &nbsp; &nbsp;
+        <a href="/admin-login">🔐 Admin Panel</a>
+    </p>
+    
 
     <form action="/generate" method="POST">
         <label>Client Name:</label>
@@ -19,7 +24,12 @@
         <h3>Items</h3>
         <div id="items-container">
             <div class="item-row">
-                <input type="text" name="item_description[]" placeholder="Enter item description">
+                <select name="item_description[]" class="product-select">
+                    <option value="">Select a product</option>
+                    {% for product in products %}
+                        <option value="{{ product[1] }}" data-price="{{ product[2] }}" data-id="{{ product[0] }}">{{ product[1] }} - ugx{{ product[3] }}</option>
+                    {% endfor %}
+                </select>
                 <input type="number" name="item_quantity[]" placeholder="Enter quantity">
                 <input type="number" name="item_price[]" placeholder="Enter price" step="0.01">
                 <br>

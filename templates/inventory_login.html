@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div style="max-width: 400px; margin: 100px auto; text-align: center;">
+
+    <h1>🔒 Inventory Access</h1>
+    <p style="color: #aaaaaa; margin-bottom: 30px;">Enter password to continue</p>
+
+    <form action="/inventory-login" method="POST">
+        <input type="password" name="password" placeholder="Enter password" style="text-align: center;">
+        <br><br>
+        <button type="submit">Enter</button>
+        &nbsp;
+        <a href="/">
+            <button type="button">Close</button>
+        </a>
+    </form>
+
+    {% if error %}
+    <p style="color: red; margin-top: 20px;">{{ error }}</p>
+    {% endif %}
+
+</div>
+</body>
+</html>

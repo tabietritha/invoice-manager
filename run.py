@@ -17,5 +17,6 @@ webview.create_window(
     "http://127.0.0.1:5000",
     width=800,
     height=600
+    url_prefix="http://127.0.0.1:5000"
 )
 webview.start()
